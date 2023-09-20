@@ -1,4 +1,4 @@
-// include "max.dfy"
+// using vcs_split_on_every_assert seems to fix everything
 
 type IntRange = (int, int)
 type NeIntRange = x: IntRange | !IsEmpty(x) witness (0,0)
