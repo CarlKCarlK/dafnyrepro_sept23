@@ -59,8 +59,7 @@ ghost predicate ValidSeq(sequence: seq<NeIntRange>) {
   && (forall i:nat, j:nat | i < j < |sequence| :: !Touch(sequence[i], sequence[j]))
 }
 
-// cmk somehow having requires listed multiple times is necessary for the verifier to work
-lemma SetsEqual(xs: seq<NeIntRange>, r: seq<NeIntRange>, r2: seq<NeIntRange>, specialIndex: nat, indexDel: nat)
+lemma {:vcs_split_on_every_assert} SetsEqual(xs: seq<NeIntRange>, r: seq<NeIntRange>, r2: seq<NeIntRange>, specialIndex: nat, indexDel: nat)
   requires specialIndex < indexDel <= |xs|
   requires specialIndex < |r2|
   requires specialIndex < |xs| == |r|
