@@ -1,4 +1,4 @@
-// using vcs_split_on_every_assert seems to fix everything
+// It looks like vcs_split_on_every_assert might be useful.
 
 type IntRange = (int, int)
 type NeIntRange = x: IntRange | !IsEmpty(x) witness (0,0)
@@ -59,7 +59,8 @@ ghost predicate ValidSeq(sequence: seq<NeIntRange>) {
   && (forall i:nat, j:nat | i < j < |sequence| :: !Touch(sequence[i], sequence[j]))
 }
 
-lemma {:vcs_split_on_every_assert} SetsEqual(xs: seq<NeIntRange>, r: seq<NeIntRange>, r2: seq<NeIntRange>, specialIndex: nat, indexDel: nat)
+//{:vcs_split_on_every_assert}
+lemma  SetsEqual(xs: seq<NeIntRange>, r: seq<NeIntRange>, r2: seq<NeIntRange>, specialIndex: nat, indexDel: nat)
   requires specialIndex < indexDel <= |xs|
   requires specialIndex < |r2|
   requires specialIndex < |xs| == |r|
